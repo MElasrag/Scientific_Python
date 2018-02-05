@@ -1,0 +1,1054 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+	\def\TeX{\mbox{T\kern-.14em\lower.5ex\hbox{E}\kern-.115em X}}
+	\def\LaTeX{\mbox{L\kern-.325em\raise.21em\hbox{$\scriptstyle{A}$}\kern-.17em}\TeX}
+
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{3\_matplotlib}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Session 3: Matplotlib}\label{session-3-matplotlib}
+
+    \subsection{What is matplotlib?}\label{what-is-matplotlib}
+
+\begin{itemize}
+\item
+  Matplotlib is a plotting library for Python
+\item
+  Claim: ``make the easy things easy and the hard things possible''.
+\item
+  Capable of:
+\item
+  Interactive and non-interactive plotting
+\item
+  Producing publication-quality figures
+\item
+  Can be used for schematic diagrams
+\item
+  Closely integrated with numpy
+\item
+  Use \texttt{numpy} functions for reading data
+\item
+  \texttt{matplotlib} can plot numpy arrays easily
+\item
+  See
+\item
+  http://matplotlib.org/
+\end{itemize}
+
+    \subsection{What does it do?}\label{what-does-it-do}
+
+\begin{itemize}
+\item
+  People often want to have a quick look at data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    And perhaps manipulate it
+  \end{itemize}
+\item
+  Large amount of functionality:
+\item
+  Line charts, bar charts, scatter plots, error bars, etc..
+\item
+  Heatmaps, contours, surfaces
+\item
+  Geographical and map-based plotting
+\item
+  Can be used
+\item
+  Via a standalone script (automatiion of plotting tasks)
+\item
+  Via ipython shell
+\item
+  Within a note book
+\item
+  All methods allow you to save your work
+\end{itemize}
+
+    \subsection{Basic concepts}\label{basic-concepts}
+
+\begin{itemize}
+\item
+  Everything is assembled by Python commands
+\item
+  Create a figure with an axes area (this is the plotting area)
+\item
+  Can create one or more plots in a figure
+\item
+  Only one plot (or axes) is active at a given time
+\item
+  Use \texttt{show()} to display the plot
+\end{itemize}
+
+\texttt{matplotlib.pyplot} contains the high-level functions we need to
+do all the above and more
+
+    \subsection{Basic plotting}\label{basic-plotting}
+
+Import numpy (alias np) and matplotlib's plotting functionality via the
+pyplot interface (alias plt)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{numpy }\ImportTok{as} \NormalTok{np}
+\ImportTok{import} \NormalTok{matplotlib.pyplot }\ImportTok{as} \NormalTok{plt}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+c1}{\PYZsh{} If using a notebook, plots can be forced to appear in the browser}
+        \PY{c+c1}{\PYZsh{} by adding the \PYZdq{}inline\PYZdq{} option}
+        
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{} Create some data points for y = cos(x) using numpy}
+        \PY{n}{xmin} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{xmax} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{n}{npts} \PY{o}{=} \PY{l+m+mi}{50}
+        \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,} \PY{n}{xmax}\PY{p}{,} \PY{n}{npts}\PY{p}{)} 
+        \PY{n}{y} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{rs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{c+c1}{\PYZsh{} rs red square gs green square rt red triangle and so on}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_7_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Saving images to file}\label{saving-images-to-file}
+
+\begin{itemize}
+\item
+  Use, e.g., \texttt{pyplot.savefig()}
+\item
+  File format is determined from the filename extension you supply
+\item
+  Commonly supports: \texttt{.png}, \texttt{.jpg}, \texttt{.pdf},
+  \texttt{.ps}
+\item
+  Other options to control, e.g., resolution
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{o}{!}pwd
+         \PY{o}{!}ls
+         \PY{o}{!}rm cos\PYZus{}plot*
+         \PY{o}{!}ls
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/home/nbuser/library/3\_matplotlib
+3\_matplotlib.ipynb  figuremap.png      random1.dat	 uniform.dat
+exercise1.py	    images	       random2.dat
+exercise2.png	    matplotlibrc.test  subplot2grid.png
+exercise2.py	    normal.dat	       subplotgrid.png
+rm: cannot remove 'cos\_plot*': No such file or directory
+3\_matplotlib.ipynb  figuremap.png      random1.dat	 uniform.dat
+exercise1.py	    images	       random2.dat
+exercise2.png	    matplotlibrc.test  subplot2grid.png
+exercise2.py	    normal.dat	       subplotgrid.png
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{k+kn}{import} \PY{n+nn}{glob}
+         \PY{n}{files} \PY{o}{=} \PY{n}{glob}\PY{o}{.}\PY{n}{glob}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{*.dat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}  \PY{c+c1}{\PYZsh{} function as ls to find your folder}
+         \PY{n+nb}{print} \PY{p}{(}\PY{n}{files}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+['uniform.dat', 'random1.dat', 'random2.dat', 'normal.dat']
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+c1}{\PYZsh{} Save image to file in different formats}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cos\PYZus{}plot.pdf}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{savefig}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{cos\PYZus{}plot.png}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dpi}\PY{o}{=}\PY{l+m+mi}{300}\PY{p}{)} \PY{c+c1}{\PYZsh{} dpi=300 for resolution}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_11_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{} Check image has been saved}
+         \PY{o}{!}ls
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3\_matplotlib.ipynb  exercise2.png  matplotlibrc.test  subplot2grid.png
+cos\_plot.pdf	    exercise2.py   normal.dat	      subplotgrid.png
+cos\_plot.png	    figuremap.png  random1.dat	      uniform.dat
+exercise1.py	    images	   random2.dat
+
+    \end{Verbatim}
+
+    \subsection{Note}\label{note}
+
+\texttt{matplotlib} is a very large package, an has a great many objects
+and methods (functions). This can be confusing.
+
+Make sure you are looking at documentation for
+\texttt{matplotlib.pyplot}
+
+http://matplotlib.org/api/pyplot\_summary.html
+
+Can help to use fully qualified names:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{matplotlib}
+\ImportTok{import} \NormalTok{matplotlib.pyplot}
+
+\NormalTok{...}
+\NormalTok{matplotlib.pyplot.plot(x, y, }\StringTok{'rv'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+to make sure you are getting the right methods.
+
+    \subsection{Exercise 1: Plot data from a
+file}\label{exercise-1-plot-data-from-a-file}
+
+Again, this exercise can be done within the notebook, or with the
+ipython shell, or by writing a script. Note that the interaction is
+slightly different in each case.
+
+\subsubsection{Files}\label{files}
+
+Check that two associated data files \texttt{random1.dat} and
+\texttt{random2.dat} are available.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{o}{!} ls
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+3\_matplotlib.ipynb  exercise2.png  matplotlibrc.test  subplot2grid.png
+cos\_plot.pdf	    exercise2.py   normal.dat	      subplotgrid.png
+cos\_plot.png	    figuremap.png  random1.dat	      uniform.dat
+exercise1.py	    images	   random2.dat
+
+    \end{Verbatim}
+
+    \paragraph{Step 1}\label{step-1}
+
+Read in the data from the files using \texttt{numpy.genfromtxt()}. You
+should have two arrays, e.g., \texttt{data1} and \texttt{data2}. The
+files contain pairs of values which we will interpret as x and y
+coordinates. Check what these data look like (that is, check the
+attributes of the resulting \texttt{numpy} arrays).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{data1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{random1.dat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{data2} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{genfromtxt}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{random2.dat}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{Step 2}\label{step-2}
+
+Plot \texttt{data1} using matplotlib to appear as red crosses (check the
+online documentation for \texttt{pyplot.plot}). You will need
+x-coordinates \texttt{data1{[}:,0{]}} and the corresponding
+y-coordinates
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data1}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data1}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{rx}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_19_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Step 3}\label{step-3}
+
+Now plot \texttt{data2} to appear a green circles connected by a line.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{data2}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{data2}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{go\PYZhy{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_21_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \paragraph{Step 4}\label{step-4}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  How do we show \texttt{data1} and \texttt{data2} on the same plot?
+\item
+  Can you find out how to add labels to the axes?
+\item
+  Can you add a legend?
+\end{enumerate}
+
+Hint: you need something like
+\texttt{plot(x,\ y,\ \textquotesingle{}+\textquotesingle{},\ label\ =\ "text")}
+for the legend
+
+    
+
+    \subsection{Line and marker styles}\label{line-and-marker-styles}
+
+There are many ways to customise a plot. These may involve interaction
+with other \texttt{matplotlib} objects, e.g.,
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} Set the figure size and add a plot (uses x and y from one of the}
+         \PY{c+c1}{\PYZsh{} above cells). The figure size (in inches) can be specified}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)} 
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_25_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} The linewidth, and linestyle can be changed.}
+         \PY{c+c1}{\PYZsh{} Linestyles include \PYZsq{}\PYZhy{}\PYZsq{}, \PYZsq{}.\PYZhy{}\PYZsq{}, \PYZsq{}:\PYZsq{}, \PYZsq{}\PYZhy{}\PYZhy{}\PYZsq{}}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth}\PY{o}{=}\PY{l+m+mf}{2.0}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{c+c1}{\PYZsh{} Markers and their properties can be controlled.}
+         \PY{c+c1}{\PYZsh{} Unfilled markers: \PYZsq{}.\PYZsq{},+\PYZsq{},\PYZsq{}x\PYZsq{},\PYZsq{}1\PYZsq{} to \PYZsq{}4\PYZsq{},\PYZsq{}|\PYZsq{}}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{+}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_27_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}33}]:} \PY{c+c1}{\PYZsh{} Filled markers include: \PYZsq{}o\PYZsq{}, \PYZsq{}s\PYZsq{},\PYZsq{}*\PYZsq{},\PYZsq{}d\PYZsq{},\PYZsq{}\PYZgt{}\PYZsq{},\PYZsq{}\PYZca{}\PYZsq{},\PYZsq{}v\PYZsq{}, \PYZsq{}p\PYZsq{}, \PYZsq{}h\PYZsq{}}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{d}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{markerfacecolor} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{None}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{markeredgecolor} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_28_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Axes and labels}\label{axes-and-labels}
+
+Set x-axis and y-axis limits, adjust title font properties.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{c+c1}{\PYZsh{} Set axis limits}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xlim}\PY{p}{(}\PY{p}{(}\PY{n}{xmax}\PY{o}{*}\PY{l+m+mf}{0.25}\PY{p}{,} \PY{n}{xmax}\PY{o}{*}\PY{l+m+mf}{0.75}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{ylim}\PY{p}{(}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{xmin}\PY{o}{*}\PY{l+m+mf}{0.25}\PY{p}{)}\PY{p}{,} \PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{xmax}\PY{o}{*}\PY{l+m+mf}{0.75}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mo\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} Set title placement and font properties}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A plot of \PYZdl{}cos(x)\PYZdl{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{20}\PY{p}{)}
+         
+         \PY{c+c1}{\PYZsh{} Location of the title can be controled via \PYZdq{}loc\PYZdq{}: center, left, right}
+         \PY{c+c1}{\PYZsh{}\PYZdq{}verticalalignment\PYZdq{}: center, top, bottom, baseline}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A Placed Title}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{loc} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{verticalalignment} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{top}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_31_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Tickmarks and annotations}\label{tickmarks-and-annotations}
+
+Add custom tickmarks and annotations.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{\PYZsh{} Tick marks: take the default, or set explicitly}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mf}{3.5}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{nticks} \PY{o}{=} \PY{l+m+mi}{4}
+         \PY{n}{tickpos} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linspace}\PY{p}{(}\PY{n}{xmin}\PY{p}{,}\PY{n}{xmax}\PY{p}{,}\PY{n}{nticks}\PY{p}{)}
+         \PY{n}{labels} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{repeat}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tick}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{nticks}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n}{tickpos}\PY{p}{,} \PY{n}{labels}\PY{p}{,} \PY{n}{rotation}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{vertical}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_33_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c+c1}{\PYZsh{} Arrows and annotations}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{atext} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{annotate this}\PY{l+s+s1}{\PYZsq{}}
+         \PY{n}{arrowtip} \PY{o}{=} \PY{p}{(}\PY{l+m+mf}{1.5}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}
+         \PY{n}{textloc}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mf}{0.75}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{n}{atext}\PY{p}{,} \PY{n}{xy}\PY{o}{=}\PY{n}{arrowtip}\PY{p}{,} \PY{n}{xytext}\PY{o}{=}\PY{n}{textloc}\PY{p}{,}
+                     \PY{n}{arrowprops}\PY{o}{=}\PY{n+nb}{dict}\PY{p}{(}\PY{n}{facecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{shrink}\PY{o}{=}\PY{l+m+mf}{0.01}\PY{p}{)}\PY{p}{,}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Subplots}\label{subplots}
+
+\begin{itemize}
+\item
+  There can be multiple plots, or subplots, within a figure
+\item
+  Use \texttt{subplot()} to place plots on a regular grid
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subplot(nrows, ncols,}
+        \NormalTok{plot_number)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Need to control which subplot is used
+
+  \begin{itemize}
+  \tightlist
+  \item
+    "Current" axes is last created
+  \item
+    Or use \texttt{pyplot.sca(ax)}
+  \end{itemize}
+\end{itemize}
+
+    \subsection{Subplots and axes objects}\label{subplots-and-axes-objects}
+
+Can move between subplots by keeping a reference to the \texttt{axes}
+array
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axes}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ncols} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+         
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_37_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{c+c1}{\PYZsh{} Space between subplots may be adjusted.}
+         \PY{c+c1}{\PYZsh{} subplots\PYZus{}adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)}
+         \PY{p}{(}\PY{n}{fig}\PY{p}{,} \PY{n}{axes}\PY{p}{)} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{nrows} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{ncols} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{wspace} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{sca}\PY{p}{(}\PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{sca}\PY{p}{(}\PY{n}{axes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_38_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{General subplots using
+subplot2grid}\label{general-subplots-using-subplot2grid}
+
+\begin{itemize}
+\tightlist
+\item
+  For more control over subplot layout, use \texttt{subplot2grid()}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{subplot2grid(shape,}
+             \NormalTok{location,}
+             \NormalTok{rowspan }\OperatorTok{=} \DecValTok{1}\NormalTok{,}
+             \NormalTok{colspan }\OperatorTok{=} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Subplots can span more than one row or column
+\end{itemize}
+
+ 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} For example: subplot2grid(shape, loc, rowspan=1, colspan=1)}
+         \PY{n}{fig} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{ax1} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax2} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{n}{colspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{ax3} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{colspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{rowspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{ax4} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplot2grid}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}\PY{p}{,} \PY{n}{rowspan}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{ax1}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax2}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{g\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax3}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{b\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax4}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{c\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_40_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Exercise 2: Three plots}\label{exercise-2-three-plots}
+
+We are now going to try to create a plot, using \texttt{subplots()},
+which looks like:
+
+\paragraph{Step 1}\label{step-1}
+
+You will need three sets of data. For the pie chart you will need to
+create arrays with the four percentages. The colours are:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{[}\StringTok{'yellowgreen'}\NormalTok{, }\StringTok{'gold'}\NormalTok{, }\StringTok{'lightskyblue'}\NormalTok{, }\StringTok{'lightcoral'}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+The two histograms are generated from data in the files
+\texttt{uniform.dat} and \texttt{normal.dat} respectively.
+
+\paragraph{Step 2}\label{step-2}
+
+You will need to create three subplots, the total size of which can be
+controled by the setting the size of the \emph{figure} object via
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fig.set_size_inches(width, height)}
+\end{Highlighting}
+\end{Shaded}
+
+Make sure the pie chart appears in the first subplot.
+
+\paragraph{Step 3}\label{step-3}
+
+Check the online documentation for the pie chart to see how to produce
+it
+
+http://matplotlib.org/api/pyplot\_api.html\#matplotlib.pyplot.pie
+
+And check the documentation for the histogram at
+
+http://matplotlib.org/api/pyplot\_api.html\#matplotlib.pyplot.hist
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{} Again, use the notebook, or a write your code in a separate file.}
+\end{Verbatim}
+
+
+    
+
+    \subsection{Other type of plots}\label{other-type-of-plots}
+
+\paragraph{Check the gallery}\label{check-the-gallery}
+
+http://matplotlib.org/gallery.html
+
+    \subsection{Customisation : matplotlibrc
+settings}\label{customisation-matplotlibrc-settings}
+
+\begin{itemize}
+\tightlist
+\item
+  Particular settings for \texttt{matplotlib} can be stored in a file
+  called the \texttt{matplotlibrc} file
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import} \NormalTok{matplotlib}
+
+\NormalTok{matplotlib.rc_file(}\StringTok{"/path/to/my/matplotlibrc"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  You would edit the \texttt{matplotlibrc} for different journal or
+  presentation styles, for example. You could have a separate
+  \texttt{matplotlibrc} for each type of style
+\end{itemize}
+
+See http://matplotlib.org/users/customizing.html 
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{k+kn}{import} \PY{n+nn}{matplotlib}
+         
+         \PY{c+c1}{\PYZsh{} This is read at start\PYZhy{}up, so may need to restart the session}
+         \PY{n}{matplotlib}\PY{o}{.}\PY{n}{rc\PYZus{}file}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{matplotlibrc.test}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{r+}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_46_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{matplotlibrc settings}\label{matplotlibrc-settings}
+
+Example
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{axes.labelsize  : }\FloatTok{9.0}
+\NormalTok{xtick.labelsize : }\FloatTok{9.0}
+\NormalTok{ytick.labelsize : }\FloatTok{9.0}
+\NormalTok{legend.fontsize : }\FloatTok{9.0}
+\NormalTok{font.family     : serif  }
+\NormalTok{font.serif      : Computer Modern Roman}
+
+\CommentTok{# Marker size}
+\NormalTok{lines.markersize  : }\DecValTok{3}
+
+\CommentTok{# Use TeX to format all text (Agg, ps, pdf backends)}
+\NormalTok{text.usetex : }\VariableTok{True}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{Exercise 3: Custom
+configurations}\label{exercise-3-custom-configurations}
+
+\paragraph{Step 1}\label{step-1}
+
+Copy the settings provided above (or create some of your own) to a file
+
+\paragraph{Step 2}\label{step-2}
+
+In a separate notebook or python script, recreate the 3-subplot figure
+of the previous exercise with the new settings.
+
+    \subsection{Summary}\label{summary}
+
+\begin{itemize}
+\item
+  Builds on \texttt{numpy}
+\item
+  Simple, interactive plotting
+\item
+  Many examples available online
+\item
+  Good enough for publication quality images
+\item
+  Can be customised for different scenarios
+\end{itemize}
+
+\begin{itemize}
+\tightlist
+\item
+  Next: SciPy
+\end{itemize}
+
+    \subsection{Advanced topic : Matplotlib frontend and
+backend}\label{advanced-topic-matplotlib-frontend-and-backend}
+
+Matplotlib consists of two parts, a frontend and a backend:
+
+\begin{itemize}
+\tightlist
+\item
+  Frontend : the user facing code i.e the interface
+\item
+  Backend : does all the hard work behind-the-scenes to render the image
+\end{itemize}
+
+There are two types of backend:
+
+\begin{itemize}
+\item
+  User interface, or \emph{interactive}, backends
+\item
+  Hardcopy, or \emph{non-interactive}, backends to make image files
+\item
+  e.g. Agg (png), Cairo (svg), PDF (pdf), PS (eps, ps)
+\item
+  Check which backend is being used with
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matplotlib.get_backend()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  Switch to a different backend (\emph{before} importing
+  \texttt{pyplot}) with
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{matplotlib.use(...)}
+\ImportTok{import} \NormalTok{matplot.pyplot }\ImportTok{as} \NormalTok{plt}
+\NormalTok{...}
+\end{Highlighting}
+\end{Shaded}
+
+For more information:
+
+http://matplotlib.org/faq/usage\_faq.html\#what-is-a-backend
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
